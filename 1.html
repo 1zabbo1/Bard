@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>To-Do List</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-list-item {
+  margin-bottom: 10px;
+}
+
+.todo-list-item .checkbox {
+  margin-right: 10px;
+}
+
+.todo-list-item .task {
+  text-decoration: line-through;
+}
+
+.todo-list-item.completed {
+  opacity: 0.5;
+}
+
+.add-task {
+  margin-bottom: 10px;
+}
+
+.add-task input {
+  width: 100%;
+}
+
+.add-task button {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+}
+body {
+  background-color: #fff;
+}
+
+.container {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-list-item {
+  margin-bottom: 10px;
+}
+
+.todo-list-item .checkbox {
+  margin-right: 10px;
+}
+
+.todo-list-item .task {
+  text-decoration: line-through;
+}
+
+.todo-list-item.completed {
+  opacity: 0.5;
+}
+
+.add-task {
+  margin-bottom: 10px;
+}
+
+.add-task input {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.add-task button {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 5px;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>To-Do List</h1>
+
+  <ul class="todo-list">
+  </ul>
+
+  <div class="add-task">
+    <input type="text" placeholder="Add a task...">
+    <button type="button">Add</button>
+  </div>
+</div>
+
+<script>
+const todoList = document.querySelector('.todo-list');
+const addTaskInput = document.querySelector('.add-task input');
+const addTaskButton = document.querySelector('.add-task button');
+
+addTaskButton.addEventListener('click', function() {
+  const task = addTaskInput.value;
+
+  if (task) {
+    const todoListItem = document.createElement('li');
+    const checkbox = document.createElement('input');
+    const taskElement = document.createElement('span');
+
+    checkbox.type = 'checkbox';
+    checkbox.addEventListener('change', function() {
+      todoListItem.classList.toggle('completed');
+    });
+
+    taskElement.textContent = task;
+
+    todoListItem.appendChild(checkbox);
+    todoListItem.appendChild(taskElement);
+
+    todoList.appendChild(todoListItem);
+
+    addTaskInput.value = '';
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rock Paper Scissors</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.button {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border: 1px solid #000;
+  margin: 10px;
+}
+
+.button.rock {
+  background-color: #ff0000;
+}
+
+.button.paper {
+  background-color: #ffff00;
+}
+
+.button.scissors {
+  background-color: #00ff00;
+}
+
+.result {
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Rock Paper Scissors</h1>
+
+  <div class="buttons">
+    <button class="button rock">Rock</button>
+    <button class="button paper">Paper</button>
+    <button class="button scissors">Scissors</button>
+  </div>
+
+  <div class="result">
+    <span id="result"></span>
+  </div>
+</div>
+
+<script>
+const resultElement = document.querySelector('#result');
+
+// Add event listeners to buttons
+document.querySelectorAll('.button').forEach(button => {
+  button.addEventListener('click', function() {
+    // Get the player's move
+    const playerMove = button.classList[1];
+
+    // Get the computer's move
+    const computerMove = Math.floor(Math.random() * 3);
+
+    // Determine the winner
+    let winner = '';
+    if (playerMove === 'rock' && computerMove === 2) {
+      winner = 'player';
+    } else if (playerMove === 'paper' && computerMove === 0) {
+      winner = 'player';
+    } else if (playerMove === 'scissors' && computerMove === 1) {
+      winner = 'player';
+    } else if (playerMove === computerMove) {
+      winner = 'tie';
+    } else {
+      winner = 'computer';
+    }
+
+    // Update the result
+    resultElement.textContent = `Result: ${winner}`;
+  });
+});
+</script>
+</body>
+</html>

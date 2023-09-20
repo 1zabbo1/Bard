@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Clicker Game</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.clicker {
+  cursor: pointer;
+}
+
+.clicker-count {
+  margin-bottom: 10px;
+}
+
+.achievements {
+  margin-bottom: 10px;
+}
+
+.achievement {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.achievement img {
+  width: 50px;
+  height: 50px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Clicker Game</h1>
+
+  <div class="clicker">
+    <img src="clicker.png" alt="Clicker">
+  </div>
+
+  <div class="clicker-count">
+    <span id="clicker-count">0</span>
+  </div>
+
+  <div class="achievements">
+    <div class="achievement">
+      <img src="achievement_1.png" alt="Achievement 1">
+    </div>
+
+    <div class="achievement">
+      <img src="achievement_2.png" alt="Achievement 2">
+    </div>
+  </div>
+</div>
+
+<script>
+const clickerCountElement = document.querySelector('#clicker-count');
+const achievementsElement = document.querySelector('.achievements');
+
+let clickerCount = 0;
+
+// Add event listener to clicker
+document.querySelector('.clicker').addEventListener('click', function() {
+  clickerCount++;
+  clickerCountElement.textContent = clickerCount;
+
+  // Update achievements
+  if (clickerCount >= 100) {
+    achievementsElement.appendChild(createAchievement('achievement_1.png', 'Achievement 1'));
+  }
+
+  if (clickerCount >= 1000) {
+    achievementsElement.appendChild(createAchievement('achievement_2.png', 'Achievement 2'));
+  }
+});
+
+// Create an achievement element
+function createAchievement(src, alt) {
+  const achievement = document.createElement('div');
+  achievement.classList.add('achievement');
+
+  const image = document.createElement('img');
+  image.src = src;
+  image.alt = alt;
+
+  achievement.appendChild(image);
+
+  return achievement;
+}
+</script>
+</body>
+</html>

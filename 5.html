@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WebP to JPG Converter</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+}
+
+.result {
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>WebP to JPG Converter</h1>
+
+  <div class="inputs">
+    <input type="file" id="webp-input" accept="image/webp">
+    <input type="file" id="jpg-input" accept="image/jpeg">
+  </div>
+
+  <button type="button" id="convert-button">Convert</button>
+
+  <div class="result">
+    <img id="result-image" src="#" alt="Converted Image">
+  </div>
+
+  <script>
+  const webpInput = document.querySelector('#webp-input');
+  const jpgInput = document.querySelector('#jpg-input');
+  const convertButton = document.querySelector('#convert-button');
+  const resultImage = document.querySelector('#result-image');
+
+  // Add event listener to convert button
+  convertButton.addEventListener('click', function() {
+    // Get the webp file
+    const webpFile = webpInput.files[0];
+
+    // Create a canvas element
+    const canvas = document.createElement('canvas');
+
+    // Read the webp file into the canvas
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(webpFile, 0, 0);
+
+    // Get the image data from the canvas
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    // Create a new image element from the image data
+    const jpgImage = new Image();
+    jpgImage.src = imageData.toDataURL('image/jpeg');
+
+    // Set the converted image as the source of the result image
+    resultImage.src = jpgImage.src;
+  });
+  </script>
+</body>
+</html>

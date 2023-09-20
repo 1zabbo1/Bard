@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Joke Site</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    #joke-button {
+      width: 100px;
+      height: 50px;
+      background-color: blue;
+      color: white;
+      font-size: 20px;
+    }
+
+    #joke-text {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <button id="joke-button">Get a new joke!</button>
+
+  <div id="joke-text"></div>
+
+  <script>
+    // This is a simple JavaScript function that will get a new joke from the API and update the joke text on the page.
+    function getJoke() {
+      // Replace this with the URL of the joke API you want to use.
+      var apiUrl = "https://icanhazdadjoke.com/";
+
+      // Make an HTTP request to the API.
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", apiUrl);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // Get the joke from the response.
+          var joke = JSON.parse(xhr.responseText).joke;
+
+          // Update the joke text on the page.
+          document.getElementById("joke-text").innerHTML = joke;
+        } else {
+          // Something went wrong with the request.
+          console.log("Error getting joke:", xhr.statusText);
+        }
+      };
+      xhr.send();
+    }
+
+    // Add an event listener to the joke button.
+    document.getElementById("joke-button").addEventListener("click", getJoke);
+
+    // Get the first joke.
+    getJoke();
+  </script>
+</body>
+</html>

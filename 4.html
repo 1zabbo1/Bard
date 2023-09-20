@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Currency Converter</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+}
+
+.result {
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Currency Converter</h1>
+
+  <div class="inputs">
+    <input type="number" id="usd-input" placeholder="USD">
+    <input type="number" id="yen-input" placeholder="YEN">
+  </div>
+
+  <button type="button" id="convert-button">Convert</button>
+
+  <div class="result">
+    <span id="result"></span>
+  </div>
+
+  <script>
+  const usdInput = document.querySelector('#usd-input');
+  const yenInput = document.querySelector('#yen-input');
+  const convertButton = document.querySelector('#convert-button');
+  const resultElement = document.querySelector('#result');
+
+  // Get the exchange rate
+  const exchangeRate = 147.71;
+
+  // Convert USD to YEN
+  function convertUsdToYen(usd) {
+    return usd * exchangeRate;
+  }
+
+  // Convert YEN to USD
+  function convertYenToUsd(yen) {
+    return yen / exchangeRate;
+  }
+
+  // Update the result
+  function updateResult() {
+    const usd = usdInput.value;
+    const yen = yenInput.value;
+
+    // Convert USD to YEN
+    if (usd) {
+      resultElement.textContent = `YEN: ${convertUsdToYen(usd)}`;
+    }
+
+    // Convert YEN to USD
+    if (yen) {
+      resultElement.textContent = `USD: ${convertYenToUsd(yen)}`;
+    }
+  }
+
+  // Add event listener to convert button
+  convertButton.addEventListener('click', updateResult);
+
+  // Update the result on load
+  updateResult();
+  </script>
+</body>
+</html>

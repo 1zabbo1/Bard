@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Lost Treasure of Captain Blackbeard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    #game-container {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    #game-text {
+      height: 200px;
+      overflow-y: auto;
+    }
+
+    #input-field {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div id="game-text">
+      <p>You are stranded on a deserted island in the Caribbean. The only clue to your rescue is a tattered map of the island, with a note that says "Captain Blackbeard's treasure is hidden somewhere on this island."
+
+You decide to follow the map and search for the treasure. As you explore the island, you encounter a variety of challenges, including dangerous traps, wild animals, and even Captain Blackbeard's ghost!
+
+To play, simply type commands into the text box below. For example, to move north, you would type "go north". To examine an object, you would type "examine object".
+
+You can also type "help" to get a list of all the available commands.</p>
+    </div>
+    <input type="text" id="input-field">
+  </div>
+
+  <script>
+    // This is a simple JavaScript function that will update the game text based on the player's input.
+    function updateGameText(text) {
+      document.getElementById("game-text").innerHTML += "<p>" + text + "</p>";
+    }
+
+    // This is a simple JavaScript event listener that will listen for keypress events on the input field.
+    document.getElementById("input-field").addEventListener("keypress", function(event) {
+      // If the player presses enter, we will process their input.
+      if (event.keyCode === 13) {
+        // Get the player's input.
+        var input = document.getElementById("input-field").value;
+
+        // Clear the input field.
+        document.getElementById("input-field").value = "";
+
+        // Process the player's input.
+        // This is where you would add your game logic.
+        // For example, you could check if the player's input is a valid command, and then update the game state accordingly.
+
+        // Once you have processed the player's input, you should update the game text.
+        updateGameText("You typed: " + input);
+      }
+    });
+  </script>
+</body>
+</html>

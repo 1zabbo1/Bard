@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    #qr-code-generator {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    #qr-code-input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    #qr-code-button {
+      width: 100px;
+      height: 50px;
+      background-color: blue;
+      color: white;
+      font-size: 20px;
+    }
+
+    #qr-code-image {
+      width: 256px;
+      height: 256px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="qr-code-generator">
+    <h1>QR Code Generator</h1>
+
+    <input type="text" id="qr-code-input" placeholder="Enter text to generate QR code">
+
+    <button id="qr-code-button">Generate QR Code</button>
+
+    <img id="qr-code-image">
+  </div>
+
+  <script>
+    // This is a simple JavaScript function that will generate a QR code from the input text.
+    function generateQRCode(text) {
+      // Replace this with the URL of the QR code generation API you want to use.
+      var apiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=" + text;
+
+      // Create a new image element.
+      var image = new Image();
+
+      // Set the image source to the QR code API URL.
+      image.src = apiUrl;
+
+      // Once the image has loaded, update the QR code image on the page.
+      image.onload = function() {
+        document.getElementById("qr-code-image").src = image.src;
+      };
+    }
+
+    // Add an event listener to the QR code button.
+    document.getElementById("qr-code-button").addEventListener("click", function() {
+      // Get the input text.
+      var text = document.getElementById("qr-code-input").value;
+
+      // Generate a QR code from the input text.
+      generateQRCode(text);
+    });
+
+    // Generate a QR code on page load.
+    generateQRCode("Hello, world!");
+  </script>
+</body>
+</html>
